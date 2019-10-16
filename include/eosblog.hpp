@@ -9,7 +9,7 @@ CONTRACT eosblog : public contract {
     using contract::contract;
 
     // general actions
-    ACTION setconfig(string blogname, string nickname, string version, string metadata);
+    ACTION setconfig(string blogname, string description, string cover, string version, string metadata);
     ACTION login();
     // posts actions
     ACTION createpost(string title, string content, string cover, string author, name category, string metadata);
@@ -24,7 +24,7 @@ CONTRACT eosblog : public contract {
 
     TABLE config {
       string  blogname;
-      string  nickname;
+      string  description;
       string  cover;
       string  version;
       string  metadata;

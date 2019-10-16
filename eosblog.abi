@@ -31,7 +31,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "nickname",
+                    "name": "description",
                     "type": "string"
                 },
                 {
@@ -144,7 +144,11 @@
                     "type": "string"
                 },
                 {
-                    "name": "nickname",
+                    "name": "description",
+                    "type": "string"
+                },
+                {
+                    "name": "cover",
                     "type": "string"
                 },
                 {
