@@ -1,0 +1,21 @@
+{
+  "main": "src/eosblog.cpp",
+  "contract": "eosblog",
+  "include": "",
+  "resource": "",
+  "cdt": "v1.6.2",
+  "output": "",
+  "scripts": {
+    "build": "eosio-cpp -abigen -I include -R resource -contract eosblog -o eosblog.wasm src/eosblog.cpp"
+  },
+  "deploy": {
+    "target": "both",
+    "mainnet": "",
+    "kylin": "",
+    "jungle": "eosblog",
+    "local": ""
+  },
+  "test": {
+    "npmClient": "yarn"
+  }
+}
