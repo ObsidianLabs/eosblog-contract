@@ -9,14 +9,12 @@ CONTRACT eosblog : public contract {
     using contract::contract;
 
     // general actions
-    ACTION setconfig(string blogname, string description, string cover, string version, string metadata);
     ACTION login();
+    ACTION setconfig(string blogname, string description, string cover, string version, string metadata);
     // posts actions
     ACTION createpost(string title, string content, string cover, string author, name category, string metadata);
     ACTION updatepost(uint64_t id, string title, string content, string cover, string author, name category, string metadata);
     ACTION deletepost(uint64_t id);
-    // clear
-    ACTION clear();
 
   private:
     void _add_category(name category);
@@ -31,7 +29,6 @@ CONTRACT eosblog : public contract {
     };
     typedef singleton<"config"_n, config> config_index;
 
-    // published posts
     TABLE post {
       uint64_t  id;
       string    title;
@@ -57,12 +54,4 @@ CONTRACT eosblog : public contract {
       uint64_t primary_key() const { return categoryname.value; }
     };
     typedef multi_index<"category"_n, category> category_index;
-    
-    TABLE tag {
-      name      tagname;
-      uint64_t  count;
-      
-      uint64_t primary_key() const { return tagname.value; }
-    };
-    typedef multi_index<"tag"_n, tag> tag_index;
 };

@@ -1,5 +1,9 @@
 #include <eosblog.hpp>
 
+ACTION eosblog::login() {
+  require_auth(get_self());
+}
+
 ACTION eosblog::setconfig(string blogname, string description, string cover, string version, string metadata) {
   require_auth(get_self());
   
@@ -15,17 +19,14 @@ ACTION eosblog::setconfig(string blogname, string description, string cover, str
   config_table.set(config_singleton, get_self());
 }
 
-ACTION eosblog::login() {
-  require_auth(get_self());
-}
-
 ACTION eosblog::createpost(string title, string content, string cover, string author, name category, string metadata) {
   require_auth(get_self());
 
   // update post table
   post_index post_table(get_self(), get_self().value);
+
   post_table.emplace(get_self(), [&](auto& row) {
-    uint32_t timestamp = current_time_point().sec_since_epoch();
+    uint32_t timestamp = current_time_point().sec_since_epoch(); // get unix timestamp of now
     row.id = (uint64_t) timestamp;
     row.title = title;
     row.content = content;
@@ -85,19 +86,10 @@ ACTION eosblog::deletepost(uint64_t id) {
   }
 }
 
-ACTION eosblog::clear() {
-  require_auth(get_self());
-
-  // remove config table
-  config_index config_table(get_self(), get_self().value);
-  config_table.remove();
-}
-
-
 // Private
-void eosblog::_add_category(name category) {
+void eosblog::_add_category(name category) { // mood
   category_index category_table(get_self(), get_self().value);
-  auto category_itr = category_table.find(category.value);
+  auto category_itr = category_table.find(category.value); // mood
   if (category_itr == category_table.end()) {
     // does not exist
     category_table.emplace(get_self(), [&](auto& row) {
@@ -129,4 +121,4 @@ void eosblog::_sub_category(name category) {
   }
 }
 
-EOSIO_DISPATCH(eosblog, (setconfig)(login)(clear)(createpost)(updatepost)(deletepost))
+EOSIO_DISPATCH(eosblog, (setconfig)(login)(createpost)(updatepost)(deletepost))

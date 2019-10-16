@@ -18,11 +18,6 @@
             ]
         },
         {
-            "name": "clear",
-            "base": "",
-            "fields": []
-        },
-        {
             "name": "config",
             "base": "",
             "fields": [
@@ -162,20 +157,6 @@
             ]
         },
         {
-            "name": "tag",
-            "base": "",
-            "fields": [
-                {
-                    "name": "tagname",
-                    "type": "name"
-                },
-                {
-                    "name": "count",
-                    "type": "uint64"
-                }
-            ]
-        },
-        {
             "name": "updatepost",
             "base": "",
             "fields": [
@@ -211,11 +192,6 @@
         }
     ],
     "actions": [
-        {
-            "name": "clear",
-            "type": "clear",
-            "ricardian_contract": ""
-        },
         {
             "name": "createpost",
             "type": "createpost",
@@ -260,13 +236,6 @@
         {
             "name": "post",
             "type": "post",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "tag",
-            "type": "tag",
             "index_type": "i64",
             "key_names": [],
             "key_types": []
